@@ -7,6 +7,10 @@ class StaticPagesController < ApplicationController
     #store password 10 second
     secret_info = cash.setex('password',10,"123456789")
 
-    puts "==========",email,"==========",secret_info
+    cash.zadd('popular',10,'Laith')
+    cash.zadd('popular',8,'Ahmmad')
+    cash.zadd('popular',15,'Ali')
+
+    puts "==========",email,"==========",secret_info,"============",cash.zrevrange(0,0),"===========",cash.zrevrange(0,-1)
   end
 end
