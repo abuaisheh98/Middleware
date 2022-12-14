@@ -11,12 +11,15 @@ class LogMiddleware
 
     ip = request.env['REMOTE_ADDR'].to_i
     result = Geocoder.search(ip)
+    puts result.first.country.to_s
+    country = result.first.country.to_s
+    city = result.first.city.to_s
     location = result.first.address || 'JO'
 
     client_browser = user_agent.browser
 
     header
-    save([location, client_browser])
+    save([country, city, client_browser])
 
     status, headers, response = @app.call(env)
     [status, headers, response]
@@ -24,7 +27,7 @@ class LogMiddleware
 
   def header
     CSV.open('Client_Information.csv', 'wb') do |csv|
-      csv << ['Location', 'Browser']
+      csv << ['Country', 'City', 'Browser']
     end
   end
 
