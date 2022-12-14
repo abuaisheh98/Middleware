@@ -9,6 +9,7 @@ gem "rails", "~> 7.0.4"
 gem 'geocoder'
 gem 'useragent'
 gem 'csv'
+gem "redis"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
